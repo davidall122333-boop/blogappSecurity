@@ -8,6 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
+from django.db.models import Q
 # Create your views here.
  
 
@@ -172,4 +173,20 @@ def profil_utilisateur_view(request, username):
     'utilisateur_profil': utilisateur_profil, 
     'articles_utilisateur': articles_utilisateur, 
     } 
+
     return render(request, 'blogapp/profil_utilisateur.html', context)   
+
+
+def search_secure(request):
+    query = request.GET.get('q', '').strip()
+
+    articles = []
+
+    if query:
+        articles = Article.objects.filter(titre__icontains=query )
+
+    
+    return render(request, 'blogapp/search_secure.html', {
+        "query": query,
+        "articles": articles
+    })

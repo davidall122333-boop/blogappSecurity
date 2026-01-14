@@ -14,6 +14,7 @@ urlpatterns = [
     path('article/<int:pk>/supprimer/', views.supprimer_article_view, name='supprimer_article'),
     path('article/<int:article_pk>/ajouter_commentaire/', views.ajouter_commentaire_view, name='ajouter_commentaire'),
     path('profil/<str:username>/', views.profil_utilisateur_view, name='profil_utilisateur'), 
+    path('search_secure/', views.search_secure, name='search_secure'),
 
 
 ]

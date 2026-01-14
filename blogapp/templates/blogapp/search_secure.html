@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Recherche sécurité{% endblock %}
+
+{% block content %}
+<h2>Recherche </h2>
+
+<form method="get" action="{% url 'search_secure' %}">
+    <input
+        type="text"
+        name="q"
+        placeholder="Rechercher un article..."
+        value="{{ query }}"
+        
+    >
+    <button type="submit">Rechercher</button>
+</form>
+
+{% if query %}
+    <h3>Résultats pour "{{ query }}"</h3>
+
+    {% if articles %}
+        <ul>
+        {% for article in articles %}
+            <li>{{ article.titre }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun résultat trouvé.</p>
+    {% endif %}
+{% endif %}
+
+{% endblock %}

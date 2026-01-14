@@ -11,6 +11,32 @@
    {% endif %} 
  
    <h2>Nos derniers articles :</h2> 
+   <h3>Recherche </h3>
+
+   <form method="get" action="{% url 'search_secure' %}">
+       <input
+           type="text"
+           name="q"
+           placeholder="Rechercher un article..."
+           value="{{ query }}"
+           
+       >
+       <button type="submit">Rechercher</button>
+   </form>
+   
+   {% if query %}
+       <h3>Résultats pour "{{ query }}"</h3>
+   
+       {% if articles %}
+           <ul>
+           {% for article in articles %}
+               <li>{{ article.titre }}</li>
+           {% endfor %}
+           </ul>
+       {% else %}
+           <p>Aucun résultat trouvé.</p>
+       {% endif %}
+   {% endif %}
    {% if articles_a_afficher %} {# On utilise la nouvelle variable passée par la vue #} 
        <ul class="article-list"> 
            {% for article_item in articles_a_afficher %} {# On boucle sur les articles de la page actuelle #} 
@@ -52,4 +78,5 @@
    {% else %} 
        <p>Il n'y a pas encore d'articles sur ce blog. Soyez le premier à en écrire un !</p> 
    {% endif %} 
+
 {% endblock %}
