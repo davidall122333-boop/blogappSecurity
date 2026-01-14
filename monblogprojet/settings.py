@@ -16,7 +16,7 @@ ALLOWED_HOSTS = [
       'localhost',
     '127.0.0.1',
     os.environ.get('RENDER_EXTERNAL_HOSTNAME', ''),
-    'monblogapp1-2.onrender.com',
+    'blogappsecurity.onrender.com',
 ]
 
 # ===========================
@@ -116,7 +116,8 @@ USE_TZ = True
 #         STATIC FILES
 # ===========================
 STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
